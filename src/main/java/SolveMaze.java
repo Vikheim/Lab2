@@ -16,7 +16,7 @@ public class SolveMaze {
      * @param unused unused input arguments
      */
 
-    public static void main(final String[] unused) {
+    public static void main(final String[] unused) throws InterruptedException{
         /*
          * Create a new 10 x 10 maze. Feel free to change these values.
          */
@@ -33,9 +33,23 @@ public class SolveMaze {
          * You should be able to solve a 10 x 10 maze in (far fewer than) 1000 steps.
          * Feel free to adjust this number if you experiment with other mazes.
          */
-        for (int step = 0; step < 1000; step++) {
-            // Implement your maze solving algorithm here
-        }
+
+            for (int step = 0; step < 1000; step++) {
+                System.out.println(maze);
+                Thread.sleep(0100);
+                if (maze.canMove()) {
+                    maze.move();
+                    maze.turnRight();
+                }
+                while (!maze.canMove()) {
+                    maze.turnLeft();
+                }
+                if (maze.isFinished()) {
+                    System.out.println(step);
+                    break;
+                }
+            }
+
 
         if (maze.isFinished()) {
             System.out.println("You solved the maze!");
